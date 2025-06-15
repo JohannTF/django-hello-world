@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Django App{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2><i class="fas fa-tachometer-alt me-3"></i>Dashboard</h2>
+                        <p class="text-muted">Bienvenido, {{ user.first_name }} {{ user.last_name }}</p>
+                    </div>
+                    <div>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                            <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mx-auto mb-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h5 class="card-title">Perfil</h5>
+                                <p class="card-text">Gestiona tu información personal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mx-auto mb-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <h5 class="card-title">Configuración</h5>
+                                <p class="card-text">Ajusta las preferencias de tu cuenta</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mx-auto mb-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h5 class="card-title">Estadísticas</h5>
+                                <p class="card-text">Visualiza tu actividad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-transparent">
+                                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Información de Usuario</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                                        <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Usuario:</strong> {{ user.username }}</p>
+                                        <p><strong>Email:</strong> {{ user.email }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p><strong>Fecha de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</p>
+                                        <p><strong>Último acceso:</strong> {{ user.last_login|date:"d/m/Y H:i"|default:"Nunca" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
